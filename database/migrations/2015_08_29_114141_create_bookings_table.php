@@ -16,6 +16,8 @@ class CreateBookingsTable extends Migration
             $table->increments('id');
             $table->integer('venue_room_slot_id');
             $table->integer('user_id');
+            $table->integer('approved_by_swf', 2)->default(0);
+            $table->integer('approved_by_security', 2)->default(0);
             $table->json('details')->nullable();
             $table->timestamps();
         });

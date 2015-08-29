@@ -15,14 +15,6 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        DB::table('users')->delete();
-        User::create(array(
-            'name'     => 'Shashank Gaurav',
-            'email' => 'shashank19gaurav@gmail.com',
-            'user_type'    => 'club',
-            'password' => Hash::make('manipal'),
-        ));
-
         Model::reguard();
     }
 }
