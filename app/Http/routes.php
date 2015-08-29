@@ -12,10 +12,28 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('pages.index');
 });
 
-Route::any('{path?}', function()
-{
-    return view("index");
-})->where("path", ".+");
+Route::get('/index', function () {
+    return view('pages.index');
+});
+
+
+
+// Authentication routes...
+Route::get('/clublogin', array('as' => 'clubLogin', 'uses' => 'Auth\AuthController@getLogin'));
+Route::post('/clublogin', array('as' => 'clubLogin', 'uses' => 'Auth\AuthController@processLogin'));
+
+
+Route::group(array('before' => 'auth'), function(){
+    // Club Routes
+    Route::get('/clubhome', 'ClubController@index');
+    Route::get('/clubbook', 'ClubController@bookRoom');
+    Route::get('/clubbookings', 'ClubController@checkBookings');
+
+});
+
+//TODO:: Change logout request to POST
+Route::get('/logout', 'Auth\AuthController@processLogout');
+//Route::get('/logout', array('as' => 'logout', 'uses' => 'Auth\AuthController@logout'));

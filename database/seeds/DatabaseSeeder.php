@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +15,13 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call(UserTableSeeder::class);
+        DB::table('users')->delete();
+        User::create(array(
+            'name'     => 'Shashank Gaurav',
+            'email' => 'shashank19gaurav@gmail.com',
+            'user_type'    => 'club',
+            'password' => Hash::make('manipal'),
+        ));
 
         Model::reguard();
     }
