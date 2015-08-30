@@ -1,182 +1,111 @@
-//TODO:: Fix this page
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Sort and Filter</title>
 
-@extends('layouts.default')
-@section('content')
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/bootstrap-datepicker.css">
 
     <style>
-        /* checkbox - each time slot */
-        .time-slot               {  }
-
-        /* hide the checkbox itself - the label will be styled */
-        .time-slot input     {
-            display:none;
-        }
-
-        /* default styling for our labels */
-        .time-slot label     {
-            padding:10px 20px;
-            color:#FFF;
-            cursor:pointer;
-            background:#EEE;
-            border-radius:5px;
-            transition:0.3s ease all;
-        }
-
-        /* if the label is checked */
-        .time-slot input:checked ~ label {
-            background:#f2dede;
-            cursor:not-allowed;
-            animation:flashBooked 0.5s ease;
-        }
-
-        /* if the label is not checked */
-        .time-slot input:not(:checked) ~ label {
-            background:#6AB074;
-            animation:flashAvailable 0.5s ease;
-        }
-
-        /* animation for the time slot to flash red */
-        @keyframes flashBooked {
-            0%, 100%  { background:#f2dede; transform:scale(1); }
-            50%       { background:#F99090; transform:scale(1.5); }
-        }
-
-        /* animation for the time slot to flash green */
-        @keyframes flashAvailable {
-            0%, 100%  { background:#6AB074; transform:scale(1); }
-            50%       { background:rgb(119, 218, 78); transform:scale(1.5); }
+        .room{
+            margin:2%;
         }
     </style>
 
-    <section style="height: 100%;">
-        <br><br><br>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/bootstrap-datepicker.js"></script>
 
-        <ul class="actions" name="name" align="center">
-            <label for="name">Select Date</label>
-            <input type="date" data-date-inline-picker="true" />
-        </ul>
+    <style>
+        body { padding-top:50px; }
+    </style>
 
-        <ul align="center" class="actions" name="time" align="center" style="width:30%;margin:auto;">
-            <label for="time">Select time</label>
-            <select name="carlist" form="carform">
-                <option value="volvo">4:00 PM</option>
-                <option value="saab">6:00 PM</option>
-            </select>
-        </ul>
+    <!-- JS -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+    <script src="../../assets/js/app.js"></script>
 
+</head>
+<body>
+<div class="container" ng-app="sortApp" ng-controller="mainController">
 
+    <h1>Book Room</h1>
+    <div class="alert alert-info">
+        <div class="container">
+            <div class="row" style="color:black;">
+                <div class="col-md-3">
+                    <label for="building">SELECT BUILDING :</label>
 
-    </section>
-
-
-    <div class="container" ng-app="scheduleApp" ng-controller="mainController">
-        <div class="row times">
-
-            <div class="col-md-4 text-center">
-
-                <h2>1st Floor</h2>
-
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
+                    <select id="building">
+                        <option value="1">NLH</option>
+                        <option value="2">AB5</option>
+                    </select>
                 </div>
 
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
+                <div class="col-md-3">
+                    <label for="date">SELECT DATE :</label>
+                    <input id="date">
+                    <span class="add-on"><i class="icon-th"></i></span>
+
                 </div>
 
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
+                <div class="col-md-3">
+                    <label for="time">SELECT TIME :</label>
+
+                    <select id="time">
+                        <option value="1">5:30 PM</option>
+                        <option value="2">7:30 PM</option>
+                    </select>
                 </div>
 
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
+                <div class="col-md-2">
+                    <button type="button" ng-click="fetchSlots()" class="btn btn-primary btn-sm">Apply</button>
                 </div>
-
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
-                </div>
-
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
-                </div> </div>
-
-
-            <div class="col-md-4 text-center">
-
-                <h2>2nd Floor</h2>
-
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
-                </div>
-
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
-                </div>
-
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
-                </div>
-
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
-                </div>
-
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
-                </div>
-
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
-                </div>  </div>
-
-            <div class="col-md-4 text-center">
-
-                <h2>2nd Floor</h2>
-
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
-                </div>
-
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
-                </div>
-
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
-                </div>
-
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
-                </div>
-
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
-                </div>
-
-                <div class="time-slot">
-                    <input type="checkbox" id="monday-time">
-                    <label for="monday-time">101</label>
-                </div>    </div>
+            </div>
         </div>
+    </div>
 
-        <script type="text/javascript">
-            $('#timepicker1').timepicker();
-        </script>
-@stop
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-2" ng-repeat="floor in slotData.data.floor">
+                <h4>  Floor : @{{ floor[0].associated_room.room[0] }} </h4>
+
+                <span ng-repeat="slot in floor">
+                    <span ng-if="slot.status==='AV'">
+                        <a href="/clubbook/book/@{{slot.id}}" class="btn btn-default room" role="button"> @{{  slot.associated_room.room }}</a><br/>
+                    </span>
+                    <span ng-if="slot.status==='NA'">
+                        <a href="/clubbook/book/@{{slot.id}}" class="btn btn-default room disabled" role="button"> @{{  slot.associated_room.room }}</a><br/>
+                    </span>
+                </span>
+            </div>
+
+            {{--<div class="col-md-2">--}}
+                {{--<h4>Floor : 1</h4>--}}
+
+                {{--<a href="#" class="btn btn-default disabled room" role="button">101</a><br/>--}}
+                {{--<a href="#" class="btn btn-default room" role="button">102</a>--}}
+
+            {{--</div>--}}
+
+            {{--<div class="col-md-2">--}}
+                {{--<h4>Floor : 2</h4>--}}
+
+                {{--<button type="button" class="btn btn-default disabled room">201</button><br/>--}}
+                {{--<button type="button" class="btn btn-default room">202</button>--}}
+
+            {{--</div>--}}
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#date').datepicker({"orientation": "bottom", "autoclose": true});
+</script>
+</body>
+</html>

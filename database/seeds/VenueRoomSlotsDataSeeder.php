@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\VenueRoomSlot;
 use App\VenueRoom;
 use App\Venue;
+use Carbon\Carbon;
 
 class VenueRoomSlotsDataSeeder extends Seeder {
 
@@ -24,7 +25,7 @@ class VenueRoomSlotsDataSeeder extends Seeder {
         $startDate = Carbon::createFromDate(2015, 8, 29, 'Asia/Kolkata');
 
         //Add slot end date here
-        $endDate = Carbon::createFromDate(2012, 9, 29, 'Asia/Kolkata');
+        $endDate = Carbon::createFromDate(2015, 8, 30, 'Asia/Kolkata');
 
 
         $venueRooms = VenueRoom::all();
@@ -42,11 +43,11 @@ class VenueRoomSlotsDataSeeder extends Seeder {
 
             foreach($venueRooms as $venueRoom) {
 
-                foreach($slot_time as $slot){
+                foreach($slot_time as $eachSlotTime){
                     $slot = new App\VenueRoomSlot();
-                    $slot->venue_room_id = $venueRooms->id;
-                    $slot->date = Carbon::parse('Y-m-d', $startDate);;
-                    $slot->start_time = $slot;
+                    $slot->venue_room_id = $venueRoom->id;
+                    $slot->date = $startDate->toDateString();
+                    $slot->start_time = $eachSlotTime;
                     $slot->status = 'AV';
 
                     $slot->save();

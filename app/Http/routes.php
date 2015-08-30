@@ -26,6 +26,16 @@ Route::get('/clublogin', array('as' => 'clubLogin', 'uses' => 'Auth\AuthControll
 Route::post('/clublogin', array('as' => 'clubLogin', 'uses' => 'Auth\AuthController@processLogin'));
 
 
+Route::get('/slots', 'RoomBookingController@getSlot');
+
+//Move this under auth
+Route::get('/clubbook/book/{slotID}', function(){
+    return view('pages.bookroom');
+});
+
+Route::get('/slots', 'RoomBookingController@getSlot');
+Route::post('/clubbook/book/{slotID}', ['as' => 'book_slot', 'uses' => 'RoomBookingController@bookSlot']);
+
 Route::group(array('before' => 'auth'), function(){
     // Club Routes
     Route::get('/clubhome', 'ClubController@index');
