@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\VenueRoomSlot;
+use App\Booking;
 use Illuminate\Http\Request;
 use Input;
 use Auth;
@@ -54,14 +55,38 @@ class RoomBookingController extends Controller
 
             //4. Update the details for the particaular slot
 
-            $user_id = Auth::user()->user_type;
 
+
+            //Update the particular slot status to NA
+
+            $slot  = VenueRoomSlot::find($slot_id);
+
+            if($slot->status=='AV'){
+                $slot->status = 'NA';
+                $slot->save();
+            }else{
+                return json_encode("Could not book the room");
+            }
+
+            //TODO :: Check if user is authorized or not
+            $userId = Auth::user()->id;
             $slotId = $slot_id;
+            $postData = Input::all();
 
 
-//            $postData =
+            $bookingDetails['registrationNumber'] = $postData['regno'];
+            $bookingDetails['eventName'] = $postData['event'];
+            $bookingDetails['eventDetails'] = $postData['description'];
 
-            return json_encode(Input::all());
+            $booking = new Booking();
+            $booking->venue_room_slot_id = $slotId;
+            $booking->user_id = $userId;
+            $booking->details = json_encode($bookingDetails);
+            $booking->save();
+
+
+
+            return "Booking Succesfull";
 
 
         }

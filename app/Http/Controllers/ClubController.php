@@ -20,8 +20,11 @@ class ClubController extends Controller
     }
 
     public function checkBookings(){
+        
         return view('pages.clubbookings');
     }
+
+
 
 
 

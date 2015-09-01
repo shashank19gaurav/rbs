@@ -83,21 +83,6 @@
                 </span>
             </div>
 
-            {{--<div class="col-md-2">--}}
-                {{--<h4>Floor : 1</h4>--}}
-
-                {{--<a href="#" class="btn btn-default disabled room" role="button">101</a><br/>--}}
-                {{--<a href="#" class="btn btn-default room" role="button">102</a>--}}
-
-            {{--</div>--}}
-
-            {{--<div class="col-md-2">--}}
-                {{--<h4>Floor : 2</h4>--}}
-
-                {{--<button type="button" class="btn btn-default disabled room">201</button><br/>--}}
-                {{--<button type="button" class="btn btn-default room">202</button>--}}
-
-            {{--</div>--}}
 
 
         </div>
