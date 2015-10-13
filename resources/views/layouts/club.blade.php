@@ -5,7 +5,7 @@
     </head>
     <body class="body">
         <div id="page-wrapper">
-            @include('includes.lheader')
+            @include('includes.clubheader')
 
             @yield('content')
 

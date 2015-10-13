@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.club')
 @section('content')
     <section id="banner" style="height: 100%;">
         <h2>Student Portal</h2>
