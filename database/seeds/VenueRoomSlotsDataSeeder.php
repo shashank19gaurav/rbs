@@ -22,10 +22,10 @@ class VenueRoomSlotsDataSeeder extends Seeder {
 
         //Date Format YYYY-MM-DD
         //Add slot start today date here
-        $startDate = Carbon::createFromDate(2015, 8, 29, 'Asia/Kolkata');
+        $startDate = Carbon::createFromDate(2015, 10, 13, 'Asia/Kolkata');
 
         //Add slot end date here
-        $endDate = Carbon::createFromDate(2015, 8, 30, 'Asia/Kolkata');
+        $endDate = Carbon::createFromDate(2015, 10, 15, 'Asia/Kolkata');
 
 
         $venueRooms = VenueRoom::all();
