@@ -65,9 +65,12 @@ Route::group(array('before' => 'auth'), function(){
     Route::get('/securityapprove/{id}', 'SecurityController@approveBooking');
 
     //FA Routes
-    Route::get('/fahome', 'SWFController@index');
-    Route::get('/fabookings', 'SWFController@checkBookings');
-    Route::get('/fabookings/{id}', 'SWFController@showBooking');
+    Route::get('/fahome', 'FAController@index');
+    Route::get('/fanewbookings', 'FAController@checkUpcomingBookings');
+    Route::get('/fastatus', 'FAController@checkRoomStatus');
+    Route::get('/fahistory/', 'FAController@showHistory');
+    Route::get('/fahistory/{id}', 'FAController@showBookingDetail');
+    Route::get('/faapprove/{id}', 'FAController@approveBooking');
 });
 
 //TODO:: Change logout request to POST
