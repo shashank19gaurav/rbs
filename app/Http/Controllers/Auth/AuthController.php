@@ -15,8 +15,7 @@ class AuthController extends Controller
 {
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest', ['except' => 'processLogout']);
     }
 
@@ -88,6 +87,16 @@ class AuthController extends Controller
                 // for now we'll just echo success (even though echoing in a controller is bad)
                 echo 'SUCCESS!';
                 echo Auth::user()->user_type;
+                if(Auth::user()->user_type=='club'){
+                    return Redirect::to('clubhome');
+                }else if(Auth::user()->user_type=='swf'){
+                    return Redirect::to('swfhome');
+                }else if(Auth::user()->user_type=='security'){
+                    return Redirect::to('securityhome');
+                }else if(Auth::user()->user_type=='fa'){
+                    return Redirect::to('fahome');
+                }
+
                 //TODO : Save the user details in the session
 
             } else {

@@ -18,6 +18,7 @@ class CreateBookingsTable extends Migration
             $table->integer('user_id');
             $table->integer('approved_by_swf')->default(0);
             $table->integer('approved_by_security')->default(0);
+            $table->integer('approved_by_fa')->default(0);
             $table->json('details')->nullable();
             $table->timestamps();
         });

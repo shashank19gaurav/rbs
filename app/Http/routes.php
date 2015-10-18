@@ -26,6 +26,7 @@ Route::get('/clublogin', array('as' => 'clubLogin', 'uses' => 'Auth\AuthControll
 Route::post('/clublogin', array('as' => 'clubLogin', 'uses' => 'Auth\AuthController@processLogin'));
 
 
+
 Route::get('/slots', 'RoomBookingController@getSlot');
 
 //Move this under auth
@@ -36,12 +37,32 @@ Route::get('/clubbook/book/{slotID}', function(){
 Route::get('/slots', 'RoomBookingController@getSlot');
 Route::post('/clubbook/book/{slotID}', ['as' => 'book_slot', 'uses' => 'RoomBookingController@bookSlot']);
 
+Route::get('/swfbookings', 'RoomBookingController@getBookingSwf');
+Route::get('/dumpclubbookings', 'RoomBookingController@getBookingClub');
+Route::get('/securitybookings', 'RoomBookingController@getBookingSecurity');
+
 Route::group(array('before' => 'auth'), function(){
     // Club Routes
     Route::get('/clubhome', 'ClubController@index');
     Route::get('/clubbook', 'ClubController@bookRoom');
     Route::get('/clubbookings', 'ClubController@checkBookings');
+    Route::get('/clubbookings/{id}', 'ClubController@showBooking');
 
+    //SWF Routes
+    Route::get('/swfhome', 'SWFController@index');
+    Route::get('/swfnewbookings', 'SWFController@checkUpcomingBookings');
+    Route::get('/swfhistory/', 'SWFController@showHistory');
+    Route::get('/swfhistory/{id}', 'SWFController@showBooking');
+
+    //Security Routes
+    Route::get('/securityhome', 'SWFController@index');
+    Route::get('/securitybookings', 'SWFController@checkBookings');
+    Route::get('/securitybookings/{id}', 'SWFController@showBooking');
+
+    //FA Routes
+    Route::get('/fahome', 'SWFController@index');
+    Route::get('/fabookings', 'SWFController@checkBookings');
+    Route::get('/fabookings/{id}', 'SWFController@showBooking');
 });
 
 //TODO:: Change logout request to POST

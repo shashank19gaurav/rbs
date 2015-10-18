@@ -12,4 +12,6 @@ class VenueRoom extends Model
         return $this->belongsTo('App\Venue', 'venue_id');
     }
 
+
+
 }

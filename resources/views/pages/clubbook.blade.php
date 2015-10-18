@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Angular Sort and Filter</title>
+    <title>Book Room| Room Booking System</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
@@ -38,7 +38,7 @@
                 <div class="col-md-3">
                     <label for="building">SELECT BUILDING :</label>
 
-                    <select id="building">
+                    <select id="building" ng-model="venueId">
                         <option value="1">NLH</option>
                         <option value="2">AB5</option>
                     </select>
@@ -46,25 +46,42 @@
 
                 <div class="col-md-3">
                     <label for="date">SELECT DATE :</label>
-                    <input id="date">
+                    <input id="date" ng-model="date">
                     <span class="add-on"><i class="icon-th"></i></span>
 
                 </div>
 
-                <div class="col-md-3">
-                    <label for="time">SELECT TIME :</label>
+                {{--<div class="col-md-3">--}}
+                    {{--<label for="time">SELECT TIME :</label>--}}
 
-                    <select id="time">
-                        <option value="1">5:30 PM</option>
-                        <option value="2">7:30 PM</option>
-                    </select>
-                </div>
+                    {{--<select id="time">--}}
+                        {{--<option value="1">5:30 PM</option>--}}
+                        {{--<option value="2">7:30 PM</option>--}}
+                    {{--</select>--}}
+                {{--</div>--}}
 
                 <div class="col-md-2">
-                    <button type="button" ng-click="fetchSlots()" class="btn btn-primary btn-sm">Apply</button>
+                    <button type="button" ng-click="fetchSlots(date, venueId)" class="btn btn-primary btn-sm">Apply</button>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="row">
+        <div class="alert alert-warning">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Timings :<br/><br/></strong>
+
+            Monday - Saturday : 5.30 PM - 7.30 PM<br/>
+            Sunday : 10 AM - 1 PM and 2 PM - 7 PM
+
+        </div>
+
+        <div class="alert alert-danger" ng-if="message!=''">
+            <strong>@{{message}}<br/></strong>
+        </div>
+
+
     </div>
 
     <div class="container">
