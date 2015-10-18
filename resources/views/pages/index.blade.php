@@ -5,9 +5,9 @@
         <br><br><br>
         <ul class="actions">
             <li><a href="/clublogin" class="button special">Club / Student Body</a></li>
+            <li><a href="/falogin" class="button special">Faculty Advisor</a></li>
             <li><a href="/swflogin" class="button special">Student Welfare Department</a></li>
             <li><a href="/seclogin" class="button special">Security Section</a></li>
-            <li><a href="/venlogin" class="button special">Faculty Advisor</a></li>
         </ul>
     </section>
 @stop
