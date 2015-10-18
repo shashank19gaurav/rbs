@@ -51,13 +51,18 @@ Route::group(array('before' => 'auth'), function(){
     //SWF Routes
     Route::get('/swfhome', 'SWFController@index');
     Route::get('/swfnewbookings', 'SWFController@checkUpcomingBookings');
+    Route::get('/swfstatus', 'SWFController@checkRoomStatus');
     Route::get('/swfhistory/', 'SWFController@showHistory');
-    Route::get('/swfhistory/{id}', 'SWFController@showBooking');
+    Route::get('/swfhistory/{id}', 'SWFController@showBookingDetail');
+    Route::get('/swfapprove/{id}', 'SWFController@approveBooking');
 
     //Security Routes
-    Route::get('/securityhome', 'SWFController@index');
-    Route::get('/securitybookings', 'SWFController@checkBookings');
-    Route::get('/securitybookings/{id}', 'SWFController@showBooking');
+    Route::get('/securityhome', 'SecurityController@index');
+    Route::get('/securitynewbookings', 'SecurityController@checkUpcomingBookings');
+    Route::get('/securitystatus', 'SecurityController@checkRoomStatus');
+    Route::get('/securityhistory/', 'SecurityController@showHistory');
+    Route::get('/securityhistory/{id}', 'SecurityController@showBookingDetail');
+    Route::get('/securityapprove/{id}', 'SecurityController@approveBooking');
 
     //FA Routes
     Route::get('/fahome', 'SWFController@index');
