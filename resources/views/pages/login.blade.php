@@ -5,7 +5,7 @@
             <h2>Student Login</h2>
         </header>
         <div class="box">
-            {!! Form::open(array('url' => 'clublogin')) !!}
+            {!! Form::open(array('url' => 'login')) !!}
                 <p>
                     {!! $errors->first('email') !!}
                     {!! $errors->first('password') !!}

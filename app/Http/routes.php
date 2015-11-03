@@ -22,8 +22,8 @@ Route::get('/index', function () {
 
 
 // Authentication routes...
-Route::get('/clublogin', array('as' => 'clubLogin', 'uses' => 'Auth\AuthController@getLogin'));
-Route::post('/clublogin', array('as' => 'clubLogin', 'uses' => 'Auth\AuthController@processLogin'));
+Route::get('/login', array('as' => 'clubLogin', 'uses' => 'Auth\AuthController@getLogin'));
+Route::post('/login', array('as' => 'clubLogin', 'uses' => 'Auth\AuthController@processLogin'));
 
 
 

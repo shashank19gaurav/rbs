@@ -30,8 +30,9 @@ class FAController extends Controller {
 
     public function showHistory(){
         $twentyFourHourBeforeNow = Carbon::now('Asia/Kolkata')->subHour(24);
-        $allBookings = Booking::where('created_at', '<=' , $twentyFourHourBeforeNow)
-            ->with('associatedVenueRoomSlot')
+//        $allBookings = Booking::where('created_at', '<=' , $twentyFourHourBeforeNow)
+        $allBookings = Booking::with('associatedVenueRoomSlot')
+//            ->with('associatedVenueRoomSlot')
             ->with('associatedVenueRoom')
             ->get();
 
@@ -40,9 +41,10 @@ class FAController extends Controller {
 
     public function approveBooking($id){
         $booking = Booking::find( $id)->first();
-        $booking->approved_by_security = 1;
+        $booking->approved_by_fa = 1;
         $booking->save();
 
+        return $booking;
         redirect('fahistory');
     }
 
