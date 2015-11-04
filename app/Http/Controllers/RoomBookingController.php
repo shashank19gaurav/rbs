@@ -80,9 +80,15 @@ class RoomBookingController extends Controller
             $postData = Input::all();
 
 
-            $bookingDetails['registrationNumber'] = $postData['regno'];
-            $bookingDetails['eventName'] = $postData['event'];
-            $bookingDetails['eventDetails'] = $postData['description'];
+            $bookingDetails['applicantsDetails'] = $postData['applicantdetails'];
+            $bookingDetails['clubName'] = $postData['clubname'];
+            $bookingDetails['contact'] = $postData['contact'];
+            $bookingDetails['typeoffunction'] = $postData['typeoffunction'];
+            $bookingDetails['purpose'] = $postData['purpose'];
+            $bookingDetails['equipments'][] = $postData['equipmentcheckbox'];
+            $bookingDetails['informationdesk'] = $postData['informationdesk'];
+            $bookingDetails['audiovisual'] = $postData['audiovisual'];
+            $bookingDetails['eventname'] = $postData['eventname'];
 
             $booking = new Booking();
             $booking->venue_room_slot_id = $slotId;
@@ -94,12 +100,40 @@ class RoomBookingController extends Controller
             //Redirect to All Booking Page
             Redirect::to('clubbookings');
 //            return "";
-
-
         }
+    }
 
+    public function cancelSlot($slot_id){
 
+        if($slot_id!=null){
+            //1. Get user id
+            //2. Get venue_slot_id
+            //3. Dump all the details as JSON
 
+            //4. Update the details for the particaular slot
+            //Update the particular slot status to NA
+
+            $booking = Booking::where('venue_room_slot_id', $slot_id)->first();
+            if($booking->approved_by_fa==1 && $booking->approved_by_swf==1 && $booking->approved_by_security==1){
+                //Can't Cancel Online
+                //Go and do it manually
+                $msg = 'This is booking can not cancelled online. You will have to do it manually.';
+            }else{
+                $slot  = VenueRoomSlot::find($slot_id);
+
+                if($slot->status=='NA'){
+                    $slot->status = 'AV';
+                    $slot->save();
+                    $booking->disapproved_by = 'club';
+                    $booking->save
+                    $msg = 'Booking Cancelled Succesfully';
+                }else{
+                    $msg = 'Error Processing your Request';
+                    Redirect::to('clubbookings');
+                }
+            }
+            return view('pages.clubcancelresponse')->with('message', $msg);
+        }
     }
 
     public function getBookingSwf(){

@@ -103,7 +103,7 @@ class AuthController extends Controller
 
                 // Validation not successful, Send back to form
                 echo "ds";
-               // return Redirect::to('login');
+                return Redirect::to('login');
 
             }
         }

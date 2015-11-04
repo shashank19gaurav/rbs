@@ -37,6 +37,8 @@ Route::get('/clubbook/book/{slotID}', function(){
 Route::get('/slots', 'RoomBookingController@getSlot');
 Route::post('/clubbook/book/{slotID}', ['as' => 'book_slot', 'uses' => 'RoomBookingController@bookSlot']);
 
+Route::get('/clubcancel/{slotID}', ['as' => 'book_slot', 'uses' => 'RoomBookingController@cancelSlot']);
+
 Route::get('/swfbookings', 'RoomBookingController@getBookingSwf');
 Route::get('/dumpclubbookings', 'RoomBookingController@getBookingClub');
 Route::get('/securitybookings', 'RoomBookingController@getBookingSecurity');

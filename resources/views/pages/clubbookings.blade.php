@@ -3,15 +3,18 @@
     {{--{{$bookingsData}}--}}
     <div class="container" style="margin-top: 5%;">
         <h2>Booking Status</h2>
+
+        <h4 style="color:black;float:right;">*Bookings highlighted in red are either cancelled/disapproved</h4>
         <table class="table">
             <thead>
                 <tr>
                     <th>Building</th>
                     <th>Room</th>
                     <th>Date</th>
+                    <th>Faculty Advisor</th>
                     <th>Student Welfare</th>
                     <th>Security Section</th>
-                    <th>Faculty Advisor</th>
+                    <th></th>
                     <th></th>
                 </tr>
 
@@ -21,7 +24,11 @@
             <tbody>
 
                 @foreach ($bookingsData as $booking)
-                    <tr class="success" style="background:#CCFFB2;">
+                    @if ($booking['disapproved_by']!=null)
+                        <tr class="danger" style="background:rgba(255, 37, 7, 0.53);">
+                    @else
+                        <tr class="success" style="background:#CCFFB2;">
+                    @endif
                         @if ($booking['associated_venue_room']['venue_id'] === 1)
                             <td> {{'NLH'}}</td>
                         @else
@@ -29,45 +36,46 @@
                         @endif
                         <td>{{$booking['associated_venue_room']['room']}}</td>
                         <td>{{$booking['associated_venue_room_slot']['date']}}</td>
-                        @if ($booking['approved_by_swf'] === 1)
-                            <td> {{'Approved'}}</td>
+                        @if ($booking['approved_by_fa'] === 1)
+                            <td> {{'Approved'}}
                         @else
-                            <td> {{'In Progress'}}</td>
+                            <td> {{'In Progress'}}
                         @endif
+                        @if ($booking['fa_remarks'] != null)
+                            <strong><br/> Remarks : {{$booking['fa_remarks']}}</strong>
+                        @endif
+                            </td>
+                        @if ($booking['approved_by_swf'] === 1)
+                            <td> {{'Approved'}}
+                        @else
+                            <td> {{'In Progress'}}
+                        @endif
+                        @if ($booking['swf_remarks'] != null)
+                            <strong><br/> Remarks : {{$booking['swf_remarks']}}</strong>
+                        @endif
+                       </td>
 
                         @if ($booking['approved_by_security'] === 1)
-                            <td> {{'Approved'}}</td>
+                            <td> {{'Approved'}}
                         @else
-                            <td> {{'In Progress'}}</td>
+                            <td> {{'In Progress'}}
                         @endif
 
-                        @if ($booking['approved_by_fa'] === 1)
-                            <td> {{'Approved'}}</td>
-                        @else
-                            <td> {{'In Progress'}}</td>
+                        @if ($booking['security_remarks'] != null)
+                            <strong><br/> Remarks : {{$booking['security_remarks']}}</strong>
                         @endif
-                            <td><a href="/clubbookings/{{$booking['id']}}">Details</a></td>
+                        </td>
+
+                        <td><a style="color: rgba(0, 0, 0, 0.71);" href="/clubbookings/{{$booking['id']}}">Details</a></td>
+                        <td><a style="color: rgba(0, 0, 0, 0.71);" href="/clubcancel/{{$booking['venue_room_slot_id']}} " onclick="javascript:return confirm('Are you sure you want to cancel this booking?')">Cancel</a></td>
                     </tr>
                 @endforeach
-            {{--<tr class="success" style="background:#CCFFB2;">--}}
-                {{--<td>AB5</td>--}}
-                {{--<td>101</td>--}}
-                {{--<td>4:00PM</td>--}}
-                {{--<td>Confirmed</td>--}}
-            {{--</tr>--}}
-            {{--<tr class="danger" style="background:#FF3333;">--}}
-                {{--<td>AB5</td>--}}
-                {{--<td>201</td>--}}
-                {{--<td>6:00PM</td>--}}
-                {{--<td>Cancelled</td>--}}
-            {{--</tr>--}}
-            {{--<tr class="info" style="background:#FFFF66;">--}}
-                {{--<td>NLH</td>--}}
-                {{--<td>201</td>--}}
-                {{--<td>4:00PM</td>--}}
-                {{--<td>Waiting</td>--}}
-            {{--</tr>--}}
             </tbody>
         </table>
     </div>
+    <script type="text/javascript">
+        function confirm_delete() {
+            return confirm('Are you sure want to cancel this booking?');
+        }
+    </script>
 @stop

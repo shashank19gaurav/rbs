@@ -38,12 +38,12 @@ class ClubController extends Controller
     }
 
     private function getBookingClub(){
-        $twentyFourHourBeforeNow = Carbon::now('Asia/Kolkata')->subHour(24);
-
+        $oneMonthBeforeNow = Carbon::now('Asia/Kolkata')->subMonth(1);
         $userId = Auth::user()->id;
-
 //        $allBookings = Booking::where('updated_at', '<=' , $twentyFourHourBeforeNow)
         $allBookings = Booking::where('user_id', $userId)
+            ->where('created_at', '>', $oneMonthBeforeNow)
+            ->orderBy('created_at', 'DESC')
             ->with('associatedVenueRoomSlot')
             ->with('associatedVenueRoom')
             ->get();
