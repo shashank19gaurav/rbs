@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class FAController extends Controller {
     public function index(){
@@ -19,9 +20,10 @@ class FAController extends Controller {
         return view('pages.faupcoming')->with('bookingsData', $bookingsData);
     }
     private function getBookingFA(){
-        $twentyFourHourBeforeNow = Carbon::now('Asia/Kolkata')->subHour(24);
-        $allBookings = Booking::where('created_at', '<=' , $twentyFourHourBeforeNow)
-            ->where('approved_by_fa', 0)
+//        $twentyFourHourBeforeNow = Carbon::now('Asia/Kolkata')->subHour(24);
+//        $allBookings = Booking::where('created_at', '<=' , $twentyFourHourBeforeNow)
+        $allBookings = Booking::where('approved_by_fa', 0)
+            ->where('disapproved_by', null)
             ->with('associatedVenueRoomSlot')
             ->with('associatedVenueRoom')
             ->get();
@@ -29,10 +31,8 @@ class FAController extends Controller {
     }
 
     public function showHistory(){
-        $twentyFourHourBeforeNow = Carbon::now('Asia/Kolkata')->subHour(24);
-//        $allBookings = Booking::where('created_at', '<=' , $twentyFourHourBeforeNow)
-        $allBookings = Booking::with('associatedVenueRoomSlot')
-//            ->with('associatedVenueRoomSlot')
+        $allBookings = Booking::where('approved_by_fa', 1)
+            ->with('associatedVenueRoomSlot')
             ->with('associatedVenueRoom')
             ->get();
 
@@ -40,12 +40,32 @@ class FAController extends Controller {
     }
 
     public function approveBooking($id){
-        $booking = Booking::find( $id)->first();
+        $booking = Booking::where('id',$id)->first();
         $booking->approved_by_fa = 1;
         $booking->save();
+//        return redirect()->route('faupcomingBookings')->with('message', "Thank You ! Booking Approved");
+        return redirect('/fanewbookings')->with('message', "Thank You ! Booking Approved");
+    }
 
-        return $booking;
-        redirect('fahistory');
+    public function disapproveBooking($id){
+        $booking = Booking::where('id',$id)->first();
+        $booking->approved_by_fa = 0;
+        $booking->disapproved_by = 'fa';
+        $booking->save();
+//        return redirect()->route('faupcomingBookings')->with('message', "Thank You ! Booking Approved");
+        return redirect('/fanewbookings')->with('message', "Thank You ! Booking Approved");
+    }
+
+    public function addRemark(){
+        return view('pages.faremark');
+    }
+
+    public function addRemarkProcessRequest($id){
+        $booking = Booking::where('id',$id)->first();
+        $booking->fa_remarks = Input::get('remark');
+        $booking->save();
+//        return redirect()->route('faupcomingBookings')->with('message', "Thank You ! Booking Approved");
+        return redirect('/fanewbookings')->with('message', "Thank You ! Booking Approved");
     }
 
     public function showBookingDetail($id){

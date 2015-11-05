@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
+use Input;
 
 class SWFController extends Controller{
     public function index(){
@@ -22,23 +23,44 @@ class SWFController extends Controller{
     }
 
     private function getBookingSWF(){
-        $twentyFourHourBeforeNow = Carbon::now('Asia/Kolkata')->subHour(24);
-        $allBookings = Booking::where('created_at', '<=' , $twentyFourHourBeforeNow)
-//        $allBookings = Booking::where('user_id', $userId)
-            ->where('approved_by_fa', 1)
+//        $twentyFourHourBeforeNow = Carbon::now('Asia/Kolkata')->subHour(24);
+        $allBookings = Booking::where('approved_by_fa',1)
+//            ->where('approved_by_fa', 1)
             ->where('approved_by_swf', 0)
+            ->where('disapproved_by', null)
             ->with('associatedVenueRoomSlot')
             ->with('associatedVenueRoom')
+            ->orderBy('id', 'created_at')
             ->get();
+//        dd($allBookings);
         return $allBookings;
     }
 
     public function approveBooking($id){
-        $booking = Booking::find( $id)->first();
+        $booking = Booking::where('id', $id)->first();
         $booking->approved_by_swf = 1;
         $booking->save();
 
-        redirect('swfhistory');
+        return redirect('/swfnewbookings')->with('message', "Thank You ! Booking Approved");;
+    }
+
+    public function addRemark(){
+        return view('pages.swfremark');
+    }
+
+    public function addRemarkProcessRequest($id){
+        $booking = Booking::where('id',$id)->first();
+        $booking->swf_remarks = Input::get('remark');
+        $booking->save();
+//        return redirect()->route('faupcomingBookings')->with('message', "Thank You ! Booking Approved");
+        return redirect('/swfnewbookings')->with('message', "Thank You ! Booking Approved");
+    }
+    public function disapproveBooking($id){
+        $booking = Booking::where('id',$id)->first();
+        $booking->approved_by_swf = 0;
+        $booking->disapproved_by = 'swf';
+        $booking->save();
+        return redirect('/swfnewbookings')->with('message', "Thank You ! Booking Approved");
     }
 
     public function showHistory(){

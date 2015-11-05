@@ -23,11 +23,11 @@ class SecurityController extends Controller {
 
     private function getBookingSWF(){
         $twentyFourHourBeforeNow = Carbon::now('Asia/Kolkata')->subHour(24);
-        $allBookings = Booking::where('created_at', '<=' , $twentyFourHourBeforeNow)
-//        $allBookings = Booking::where('user_id', $userId)
-            ->where('approved_by_fa', 1)
+        $allBookings = Booking::where('approved_by_fa', 1)
+//            ->where('approved_by_fa', 1)
             ->where('approved_by_swf', 1)
             ->where('approved_by_security', 0)
+            ->where('disapproved_by', null)
             ->with('associatedVenueRoomSlot')
             ->with('associatedVenueRoom')
             ->get();
@@ -35,19 +35,27 @@ class SecurityController extends Controller {
     }
 
     public function approveBooking($id){
-        $booking = Booking::find( $id)->first();
+        $booking = Booking::where('id', $id)->first();
         $booking->approved_by_security = 1;
         $booking->save();
 
-        redirect('securityhistory');
+        return redirect('securitynewbookings');
+    }
+
+    public function disapproveBooking($id){
+        $booking = Booking::where('id', $id)->first();
+        $booking->approved_by_security = 0;
+        $booking->disapproved_by = 'security';
+        $booking->save();
+
+        return redirect('securitynewbookings');
     }
 
     public function showHistory(){
-        $twentyFourHourBeforeNow = Carbon::now('Asia/Kolkata')->subHour(24);
-        $allBookings = Booking::where('created_at', '<=' , $twentyFourHourBeforeNow)
-//        $allBookings = Booking::where('user_id', $userId)
-            ->where('approved_by_fa', 1)
+        $allBookings = Booking::where('approved_by_fa', 1)
             ->where('approved_by_swf', 1)
+            ->where('approved_by_security', 1)
+            ->where('disapproved_by', null)
             ->with('associatedVenueRoomSlot')
             ->with('associatedVenueRoom')
             ->get();

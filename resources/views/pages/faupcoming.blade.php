@@ -3,12 +3,18 @@
     {{--{{$bookingsData}}--}}
     <div class="container" style="margin-top: 5%;">
         <h2>Booking Status</h2>
+        <h4 style="float: right;color:black;">* Please add any remark before approving or disapproving.</h4>
+        @if (isset($message))
+            {{-- Message to be dispalyed incase redirected from approval or disapproval --}}
+            {{ $message  }}
+        @endif
         <table class="table">
             <thead>
                 <tr>
                     <th>Building</th>
                     <th>Room</th>
                     <th>Date</th>
+                    <th>Remark</th>
                     <th></th>
                 </tr>
 
@@ -26,9 +32,15 @@
                         @endif
                         <td>{{$booking['associated_venue_room']['room']}}</td>
                         <td>{{$booking['associated_venue_room_slot']['date']}}</td>
-
+                        @if ($booking['fa_remarks'] !=null)
+                            <td> {{ $booking['fa_remarks'] }}</td>
+                        @else
+                            <td> {{  '-'   }}</td>
+                        @endif
                         <td><a href="/fahistory/{{$booking['id']}}">Details</a></td>
-                        <td><a href="/faapprove/{{$booking['id']}}" onclick="confirm('Are you sure to confirm this booking from your side ?')">Approve</a></td>
+                        <td><a href="/faapprove/{{$booking['id']}}" onclick="javascript:return confirm('Are you sure to confirm this booking?')">Approve</a></td>
+                        <td><a href="/fadisapprove/{{$booking['id']}}" onclick="javascript:return confirm('Are you sure to cancel this booking ?')">Disapprove</a></td>
+                        <td><a href="/faremark/{{$booking['id']}}">Add/Change Remark</a></td>
                     </tr>
                 @endforeach
             </tbody>

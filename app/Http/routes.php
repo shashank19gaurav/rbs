@@ -57,6 +57,9 @@ Route::group(array('before' => 'auth'), function(){
     Route::get('/swfhistory/', 'SWFController@showHistory');
     Route::get('/swfhistory/{id}', 'SWFController@showBookingDetail');
     Route::get('/swfapprove/{id}', 'SWFController@approveBooking');
+    Route::get('/swfdisapprove/{id}', 'SWFController@disapproveBooking');
+    Route::get('/swfremark/{id}', 'SWFController@addRemark');
+    Route::post('/swfremark/{id}', 'SWFController@addRemarkProcessRequest');
 
     //Security Routes
     Route::get('/securityhome', 'SecurityController@index');
@@ -65,14 +68,21 @@ Route::group(array('before' => 'auth'), function(){
     Route::get('/securityhistory/', 'SecurityController@showHistory');
     Route::get('/securityhistory/{id}', 'SecurityController@showBookingDetail');
     Route::get('/securityapprove/{id}', 'SecurityController@approveBooking');
+    Route::get('/securitydisapprove/{id}', 'SecurityController@disapproveBooking');
+    Route::get('/securityremark/{id}', 'SecurityController@addRemark');
+    Route::post('/securityremark/{id}', 'SecurityController@addRemarkProcessRequest');
 
     //FA Routes
     Route::get('/fahome', 'FAController@index');
-    Route::get('/fanewbookings', 'FAController@checkUpcomingBookings');
+//    Route::get('/fanewbookings', 'FAController@checkUpcomingBookings');
+    Route::get('/fanewbookings', ['as' => 'faupcomingBookings', 'uses' => 'FAController@checkUpcomingBookings']);
     Route::get('/fastatus', 'FAController@checkRoomStatus');
     Route::get('/fahistory/', 'FAController@showHistory');
     Route::get('/fahistory/{id}', 'FAController@showBookingDetail');
     Route::get('/faapprove/{id}', 'FAController@approveBooking');
+    Route::get('/fadisapprove/{id}', 'FAController@disapproveBooking');
+    Route::get('/faremark/{id}', 'FAController@addRemark');
+    Route::post('/faremark/{id}', 'FAController@addRemarkProcessRequest');
 });
 
 //TODO:: Change logout request to POST

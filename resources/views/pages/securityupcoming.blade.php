@@ -11,6 +11,7 @@
                     <th>Date</th>
                     <th>Faculty Advisor</th>
                     <th>Student Welfare</th>
+                    <th>Your Remark</th>
                     <th></th>
                 </tr>
 
@@ -39,8 +40,16 @@
                         @else
                             <td> {{'In Progress'}}</td>
                         @endif
+
+                        @if ($booking['security_remarks'] == null)
+                            <td> {{  '-' }}</td>
+                        @else
+                            <td> <strong>{{ $booking['security_remarks'] }}</strong></td>
+                        @endif
+
                         <td><a href="/securityhistory/{{$booking['id']}}">Details</a></td>
-                        <td><a href="/securityapprove/{{$booking['id']}}" onclick="confirm('Are you sure to confirm this booking from your side ?')">Approve</a></td>
+                        <td><a href="/securityapprove/{{$booking['id']}}" onclick="javascript:return confirm('Are you sure to approve this booking ?')">Approve</a></td>
+                        <td><a href="/securitydisapprove/{{$booking['id']}}" onclick="javascript:return confirm('Are you sure to disapprove this booking ?')">Disapprove</a></td>
                     </tr>
                 @endforeach
             </tbody>

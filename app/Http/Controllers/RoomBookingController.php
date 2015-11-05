@@ -125,7 +125,7 @@ class RoomBookingController extends Controller
                     $slot->status = 'AV';
                     $slot->save();
                     $booking->disapproved_by = 'club';
-                    $booking->save
+                    $booking->save();
                     $msg = 'Booking Cancelled Succesfully';
                 }else{
                     $msg = 'Error Processing your Request';
