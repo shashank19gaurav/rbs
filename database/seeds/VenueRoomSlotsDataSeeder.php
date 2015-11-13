@@ -20,27 +20,37 @@ class VenueRoomSlotsDataSeeder extends Seeder {
          \DB::table('venue_room_slots')->delete();
 
 
+        //Things to do here -
+        // 1. Seperate the logic of AB5 and NLH
+        // 2.
+
+
+
+
         //Date Format YYYY-MM-DD
         //Add slot start today date here
-        $startDate = Carbon::createFromDate(2015, 10, 13, 'Asia/Kolkata');
+        $startDate = Carbon::createFromDate(2015, 11, 5, 'Asia/Kolkata');
 
         //Add slot end date here
-        $endDate = Carbon::createFromDate(2015, 10, 15, 'Asia/Kolkata');
+        $endDate = Carbon::createFromDate(2015, 11, 11, 'Asia/Kolkata');
 
 
-        $venueRooms = VenueRoom::all();
+        //Fill the slots for NLH first
+        $venueRooms = VenueRoom::where('venue_id',1)->get();
 
+//        dd($venueRooms->toArray());
         //This should be in minutes
         //5:30 PM in minutes = 1050
         //7:00 PM in minutes = 1140
 
-        $slot_time = [1050, 1140];
+        $slot_time = [1050];
 
         //I know logic is not very efficient
         //But running short on time
 
-        while($startDate->diffInDays($endDate)!=-1){
+        while(!$startDate->eq(($endDate))){
 
+            echo "Start Date : ".$startDate." End Date: ".$endDate;
             foreach($venueRooms as $venueRoom) {
 
                 foreach($slot_time as $eachSlotTime){

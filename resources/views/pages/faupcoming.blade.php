@@ -33,7 +33,7 @@
                         <td>{{$booking['associated_venue_room']['room']}}</td>
                         <td>{{$booking['associated_venue_room_slot']['date']}}</td>
                         @if ($booking['fa_remarks'] !=null)
-                            <td> {{ $booking['fa_remarks'] }}</td>
+                            <td> <strong>{{ $booking['fa_remarks'] }}</strong></td>
                         @else
                             <td> {{  '-'   }}</td>
                         @endif

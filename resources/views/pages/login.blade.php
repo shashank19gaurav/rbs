@@ -2,7 +2,7 @@
 @section('content')
     <section id="main" class="container 75%">
         <header>
-            <h2>Student Login</h2>
+            <h2>Login</h2>
         </header>
         <div class="box">
             {!! Form::open(array('url' => 'login')) !!}

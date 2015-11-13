@@ -15,9 +15,9 @@
                 <br>
                 <tr><strong>Date </strong>: {{ $booking[0]['associated_venue_room_slot']['date']}}</tr>
                 <br>
-                <tr><strong>Club Name </strong>: {{ json_decode($booking[0]['details'])->clubname}}</tr>
+                <tr><strong>Club Name </strong>: {{ json_decode($booking[0]['details'])->clubName}}</tr>
                 <br>
-                <tr><strong>Applicant Name / Registration Number </strong>: {{ json_decode($booking[0]['details'])->applicantname}}</tr>
+                <tr><strong>Applicant Name / Registration Number </strong>: {{ json_decode($booking[0]['details'])->applicantsDetails}}</tr>
                 <br>
                 <tr><strong>Contact </strong>: {{ json_decode($booking[0]['details'])->contact}}</tr>
                 <br>

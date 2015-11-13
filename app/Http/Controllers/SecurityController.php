@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\VenueRoomSlot;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -74,5 +75,46 @@ class SecurityController extends Controller {
 
     public function checkRoomStatus(){
         return view('pages.swfstatus');
+    }
+
+    public function changeRoomShow(Request $request, $id) {
+        $request->session()->put('currentBookingId', $id);
+        return view('pages.securitychange');
+    }
+
+    public function changeRoom(Request $request, $slotId) {
+        if ($request->session()->has('currentBookingId')) {
+            $bookingId = $request->session()->get('currentBookingId');
+
+            //Found Booking ID and Slot Id Both
+            //Now Change the booking
+
+            //Get the old slot Id - Update its status to AV
+            //Make the status of new slot id as NA
+            //Change the slot in the original booking object
+            $booking = Booking::where('id', $bookingId)->first();
+            $venueRoomSlot = VenueRoomSlot::where('id', $slotId)->first();
+            if($venueRoomSlot->status=="AV"){
+                //Change the booking
+
+                $venueRoomSlot->status = "NA";
+                $venueRoomSlot->save();
+                //Get the old venue slot id and change its status to av
+
+                $oldVenueRoomSlotId = $booking->venue_room_slot_id;
+                $oldVenueRoomSlot = VenueRoomSlot::where('id', $oldVenueRoomSlotId)->first();
+
+                if($oldVenueRoomSlot->status=="NA"){
+                    $oldVenueRoomSlot->status="AV";
+                    $oldVenueRoomSlot->save();
+                    $booking->venue_room_slot_id = $slotId;
+                    $booking->save();
+                    dd("Success");
+                }
+
+            }
+
+            dd("NHP");
+        }
     }
 }

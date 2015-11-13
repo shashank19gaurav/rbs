@@ -29,13 +29,9 @@ Route::post('/login', array('as' => 'clubLogin', 'uses' => 'Auth\AuthController@
 
 Route::get('/slots', 'RoomBookingController@getSlot');
 
-//Move this under auth
-Route::get('/clubbook/book/{slotID}', function(){
-    return view('pages.bookroom');
-});
+
 
 Route::get('/slots', 'RoomBookingController@getSlot');
-Route::post('/clubbook/book/{slotID}', ['as' => 'book_slot', 'uses' => 'RoomBookingController@bookSlot']);
 
 Route::get('/clubcancel/{slotID}', ['as' => 'book_slot', 'uses' => 'RoomBookingController@cancelSlot']);
 
@@ -49,6 +45,11 @@ Route::group(array('before' => 'auth'), function(){
     Route::get('/clubbook', 'ClubController@bookRoom');
     Route::get('/clubbookings', 'ClubController@checkBookings');
     Route::get('/clubbookings/{id}', 'ClubController@showBooking');
+    Route::get('/clubbook/book/{slotID}', function(){
+        return view('pages.bookroom');
+    });
+    Route::post('/clubbook/book/{slotID}', ['as' => 'book_slot', 'uses' => 'RoomBookingController@bookSlot']);
+
 
     //SWF Routes
     Route::get('/swfhome', 'SWFController@index');
@@ -72,9 +73,14 @@ Route::group(array('before' => 'auth'), function(){
     Route::get('/securityremark/{id}', 'SecurityController@addRemark');
     Route::post('/securityremark/{id}', 'SecurityController@addRemarkProcessRequest');
 
+    Route::get('/securitychange/{bookingID}', 'SecurityController@changeRoomShow');
+
+
+    Route::get('/changeroom/{newSlotID}', ['as' => 'book_slot', 'uses' => 'SecurityController@changeRoom']);
+
+
     //FA Routes
     Route::get('/fahome', 'FAController@index');
-//    Route::get('/fanewbookings', 'FAController@checkUpcomingBookings');
     Route::get('/fanewbookings', ['as' => 'faupcomingBookings', 'uses' => 'FAController@checkUpcomingBookings']);
     Route::get('/fastatus', 'FAController@checkRoomStatus');
     Route::get('/fahistory/', 'FAController@showHistory');

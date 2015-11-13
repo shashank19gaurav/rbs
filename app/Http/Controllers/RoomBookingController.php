@@ -22,8 +22,8 @@ class RoomBookingController extends Controller
 //        $slotTime = Input::get('time');
         $slotDate = Carbon::parse(Input::get('date'));
         $venueId = Input::get('venueId');
-
-        $slots = VenueRoomSlot::where('date', $slotDate)
+//        dd($slotDate->toDateString());
+        $slots = VenueRoomSlot::where('date', $slotDate->toDateString())
             ->with('associatedRoom')
             ->with('associatedVenue')
             ->whereHas('associatedRoom', function($q) use ($venueId){
@@ -31,6 +31,7 @@ class RoomBookingController extends Controller
             })
             ->get();
 
+//        dd($slots);
         //Floor wise data sort karna hai
         //Frontend pe dikhane ke liye
 
@@ -69,7 +70,7 @@ class RoomBookingController extends Controller
                 $slot->save();
             }else{
                 //Redirect to All Booking Page
-                Redirect::to('clubbookings');
+               return Redirect::to('clubbookings');
 //                return "";
 //                return json_encode("Could not book the room");
             }
@@ -98,7 +99,7 @@ class RoomBookingController extends Controller
 
 
             //Redirect to All Booking Page
-            Redirect::to('clubbookings');
+           return Redirect::to('clubbookings');
 //            return "";
         }
     }

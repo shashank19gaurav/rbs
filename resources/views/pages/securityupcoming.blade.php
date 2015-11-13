@@ -13,6 +13,7 @@
                     <th>Student Welfare</th>
                     <th>Your Remark</th>
                     <th></th>
+                    <th></th>
                 </tr>
 
 
@@ -50,6 +51,8 @@
                         <td><a href="/securityhistory/{{$booking['id']}}">Details</a></td>
                         <td><a href="/securityapprove/{{$booking['id']}}" onclick="javascript:return confirm('Are you sure to approve this booking ?')">Approve</a></td>
                         <td><a href="/securitydisapprove/{{$booking['id']}}" onclick="javascript:return confirm('Are you sure to disapprove this booking ?')">Disapprove</a></td>
+                        <td><a href="/securitychange/{{$booking['id']}}">Change Room</a></td>
+
                     </tr>
                 @endforeach
             </tbody>

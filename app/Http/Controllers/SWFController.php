@@ -65,9 +65,9 @@ class SWFController extends Controller{
 
     public function showHistory(){
         $twentyFourHourBeforeNow = Carbon::now('Asia/Kolkata')->subHour(24);
-        $allBookings = Booking::where('created_at', '<=' , $twentyFourHourBeforeNow)
+        $allBookings = Booking::where('approved_by_fa', '<=' , 1)
 //        $allBookings = Booking::where('user_id', $userId)
-            ->where('approved_by_fa', 1)
+            ->where('approved_by_swf', 1)
             ->with('associatedVenueRoomSlot')
             ->with('associatedVenueRoom')
             ->get();

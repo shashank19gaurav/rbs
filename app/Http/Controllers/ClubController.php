@@ -24,7 +24,7 @@ class ClubController extends Controller
 
     public function checkBookings(){
         $bookingsData =  $this->getBookingClub()->toArray();
-//        dd($bookingsData[0]);
+//        dd($bookingsData);
         return view('pages.clubbookings')->with('bookingsData', $bookingsData);
     }
 
