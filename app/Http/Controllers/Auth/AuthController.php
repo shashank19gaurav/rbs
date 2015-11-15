@@ -10,6 +10,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
+
+
 
 class AuthController extends Controller
 {
@@ -54,7 +57,7 @@ class AuthController extends Controller
         return view('pages.login');
     }
 
-    public function processLogin(){
+    public function processLogin(Request $request){
         // Validate the info
         // Create the rules
 
@@ -85,8 +88,15 @@ class AuthController extends Controller
                 // redirect them to the secure section or whatever
                 // return Redirect::to('secure');
                 // for now we'll just echo success (even though echoing in a controller is bad)
-                echo 'SUCCESS!';
-                echo Auth::user()->user_type;
+                // echo 'SUCCESS!';
+                // echo Auth::user()->user_type;
+
+                //Store the user type in sessions
+                $currentUserType = Auth::user()->user_type;
+                session(['current_user_type' =>  $currentUserType]);
+                // $request->session()->put('current_user_type', Auth::user()->user_type);
+                // dd($request->session()->get('current_user_type'));
+
                 if(Auth::user()->user_type=='club'){
                     return Redirect::to('clubhome');
                 }else if(Auth::user()->user_type=='swf'){
