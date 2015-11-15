@@ -56,51 +56,69 @@ class RoomBookingController extends Controller
             //1. Get user id
             //2. Get venue_slot_id
             //3. Dump all the details as JSON
-
             //4. Update the details for the particaular slot
-
-
-
             //Update the particular slot status to NA
 
-            $slot  = VenueRoomSlot::find($slot_id);
+            $slot  = VenueRoomSlot::where('id', $slot_id)->first();
 
-            if($slot->status=='AV'){
-                $slot->status = 'NA';
-                $slot->save();
-            }else{
+            //Club is only allowed to do two bookings on a day
+            //First check for booking count on that day
+            //If count >= 2 
+            //Do not allow to book them the room
+
+            $bookingDate = $slot->date;
+            $userId = Auth::user()->id;
+
+            $venueRoomSlotIds = VenueRoomSlot::where('date', $bookingDate)->lists('id');
+
+            //Get all bookings off this user on the date
+            //Which are not disapproved
+            //When he is trying to book the room
+            $bookings = Booking::where('user_id', $userId)
+                        ->where('disapproved_by', null)
+                        ->whereIn('venue_room_slot_id', $venueRoomSlotIds)
+                        ->get();
+
+            if(count($bookings)>=2){
+                //Bookings Not Allowed 
+                return("You can not book any more room on ".$bookingDate);
+            }else {
+                if($slot->status=='AV'){
+                    $slot->status = 'NA';
+                    $slot->save();
+                }else{
+                    //Redirect to All Booking Page
+                   // return Redirect::to('clubbookings');
+                   return("Could not book the room");
+                }
+
+                $slotId = $slot_id;
+                $postData = Input::all();
+
+                $bookingDetails['applicantsDetails'] = $postData['applicantdetails'];
+                $bookingDetails['clubName'] = $postData['clubname'];
+                $bookingDetails['contact'] = $postData['contact'];
+                $bookingDetails['typeoffunction'] = $postData['typeoffunction'];
+                $bookingDetails['purpose'] = $postData['purpose'];
+                $bookingDetails['equipments'][] = $postData['equipmentcheckbox'];
+                $bookingDetails['informationdesk'] = $postData['informationdesk'];
+                $bookingDetails['audiovisual'] = $postData['audiovisual'];
+                $bookingDetails['eventname'] = $postData['eventname'];
+
+                $booking = new Booking();
+                $booking->venue_room_slot_id = $slotId;
+                $booking->user_id = $userId;
+                $booking->details = json_encode($bookingDetails);
+                $booking->save();
+
+
                 //Redirect to All Booking Page
                return Redirect::to('clubbookings');
-//                return "";
-//                return json_encode("Could not book the room");
+    //            return "";
             }
 
-            //TODO :: Check if user is authorized or not
-            $userId = Auth::user()->id;
-            $slotId = $slot_id;
-            $postData = Input::all();
 
-
-            $bookingDetails['applicantsDetails'] = $postData['applicantdetails'];
-            $bookingDetails['clubName'] = $postData['clubname'];
-            $bookingDetails['contact'] = $postData['contact'];
-            $bookingDetails['typeoffunction'] = $postData['typeoffunction'];
-            $bookingDetails['purpose'] = $postData['purpose'];
-            $bookingDetails['equipments'][] = $postData['equipmentcheckbox'];
-            $bookingDetails['informationdesk'] = $postData['informationdesk'];
-            $bookingDetails['audiovisual'] = $postData['audiovisual'];
-            $bookingDetails['eventname'] = $postData['eventname'];
-
-            $booking = new Booking();
-            $booking->venue_room_slot_id = $slotId;
-            $booking->user_id = $userId;
-            $booking->details = json_encode($bookingDetails);
-            $booking->save();
-
-
-            //Redirect to All Booking Page
-           return Redirect::to('clubbookings');
-//            return "";
+            
         }
     }
 
