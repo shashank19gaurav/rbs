@@ -95,7 +95,8 @@ class RoomBookingController extends Controller
                 $slotId = $slot_id;
                 $postData = Input::all();
 
-                $bookingDetails['applicantsDetails'] = $postData['applicantdetails'];
+                $bookingDetails['applicantName'] = $postData['applicantName'];
+                $bookingDetails['applicantRegistrationNumber'] = $postData['applicantRegistrationNumber'];
                 $bookingDetails['clubName'] = $postData['clubname'];
                 $bookingDetails['contact'] = $postData['contact'];
                 $bookingDetails['typeoffunction'] = $postData['typeoffunction'];
@@ -104,6 +105,9 @@ class RoomBookingController extends Controller
                 $bookingDetails['informationdesk'] = $postData['informationdesk'];
                 $bookingDetails['audiovisual'] = $postData['audiovisual'];
                 $bookingDetails['eventname'] = $postData['eventname'];
+                $bookingDetails['posters'] = $postData['posters'];
+                $bookingDetails['displayboard'] = $postData['displayboard'];
+                $bookingDetails['banners'] = $postData['banners'];
 
                 $booking = new Booking();
                 $booking->venue_room_slot_id = $slotId;

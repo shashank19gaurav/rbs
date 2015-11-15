@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+`<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -45,10 +45,18 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="applicantdetails">Applicant Name / Registration Number</label>
+                        <label class="col-md-4 control-label" for="applicantName">Applicant Name </label>
                         <div class="col-md-4">
-                            <input id="applicantdetails" name="applicantdetails" type="text" placeholder="" class="form-control input-md" required="">
+                            <input id="applicantName" name="applicantName" type="text" placeholder="" class="form-control input-md" required="">
+                        </div>
+                    </div>
 
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="applicantRegistrationNumber">Applicant Registration Number</label>
+                        <div class="col-md-4">
+                            <input id="applicantRegistrationNumber" name="applicantRegistrationNumber" type="text" placeholder="" class="form-control input-md" required="">
                         </div>
                     </div>
 
@@ -115,14 +123,6 @@
 
                     <!-- Textarea -->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="informationdesk">Information Desk Details (Optional)</label>
-                        <div class="col-md-4">
-                            <textarea class="form-control" id="informationdesk" name="informationdesk"></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Textarea -->
-                    <div class="form-group">
                         <label class="col-md-4 control-label" for="audiovisual">Audio Visual System (Optional)</label>
                         <div class="col-md-4">
                             <textarea class="form-control" id="audiovisual" name="audiovisual"></textarea>
@@ -134,7 +134,46 @@
                         <label class="col-md-4 control-label" for="eventname">Event Name</label>
                         <div class="col-md-4">
                             <input id="eventname" name="eventname" type="text" placeholder="" class="form-control input-md" required="">
+                        </div>
+                    </div>
+                </fieldset>
 
+                <hr>
+                
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend align="center">Details Regarding Publicity</legend>
+                    <h5 align="center"> * Please Fill in the Venue and the date range in the respective boxes</h5>
+
+                    <!-- Textarea -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="informationdesk">Information Desk Details (Optional)</label>
+                        <div class="col-md-4">
+                            <textarea class="form-control" id="informationdesk" name="informationdesk"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Textarea -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="banners">Banners (Optional)</label>
+                        <div class="col-md-4">
+                            <textarea class="form-control" id="banners" name="banners"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Textarea -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="posters">Posters (Optional)</label>
+                        <div class="col-md-4">
+                            <textarea class="form-control" id="posters" name="posters"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Textarea -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="displayboard">Display Board (Optional)</label>
+                        <div class="col-md-4">
+                            <textarea class="form-control" id="displayboard" name="displayboard"></textarea>
                         </div>
                     </div>
 
@@ -145,8 +184,6 @@
                             <button id="submit" name="submit" class="btn btn-primary">Book</button>
                         </div>
                     </div>
-
-
                 </fieldset>
             </div>
         </div>
