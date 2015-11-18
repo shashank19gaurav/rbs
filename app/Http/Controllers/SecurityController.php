@@ -109,6 +109,8 @@ class SecurityController extends Controller {
                     $oldVenueRoomSlot->save();
                     $booking->venue_room_slot_id = $slotId;
                     $booking->save();
+                    return redirect('securitynewbookings');
+
                     dd("Success");
                 }
 
