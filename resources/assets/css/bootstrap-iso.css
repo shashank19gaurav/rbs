@@ -8,12 +8,12 @@
   /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
   /*# sourceMappingURL=bootstrap.css.map */
 }
-.bootstrap-iso html {
+.bootstrap-iso {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
-.bootstrap-iso body {
+.bootstrap-iso {
   margin: 0;
 }
 .bootstrap-iso article,
@@ -129,14 +129,14 @@
   text-transform: none;
 }
 .bootstrap-iso button,
-.bootstrap-iso html input[type="button"],
+.bootstrap-iso input[type="button"],
 .bootstrap-iso input[type="reset"],
 .bootstrap-iso input[type="submit"] {
   -webkit-appearance: button;
   cursor: pointer;
 }
 .bootstrap-iso button[disabled],
-.bootstrap-iso html input[disabled] {
+.bootstrap-iso input[disabled] {
   cursor: default;
 }
 .bootstrap-iso button::-moz-focus-inner,
@@ -1076,11 +1076,11 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.bootstrap-iso html {
+.bootstrap-iso {
   font-size: 10px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-.bootstrap-iso body {
+.bootstrap-iso {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;

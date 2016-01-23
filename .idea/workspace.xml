@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7a8004b5-360d-4720-8c50-7f62ead4038d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/RoomBookingController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RoomBookingController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/ClubMiddleware.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/ClubMiddleware.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/VenueRoomSlotsDataSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/VenueRoomSlotsDataSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pages/clubbook.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/clubbook.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/pages/clubbookingshow.blade.php" afterPath="$PROJECT_DIR$/resources/views/pages/clubbookingshow.blade.php" />
     </list>
     <ignored path="rbs.iws" />
     <ignored path=".idea/workspace.xml" />
