@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
     <title>Book Room| Room Booking System</title>
 
     <!-- CSS -->
+    {{--<link rel="stylesheet" href="../../assets/css/bootstrap-iso.css" />--}}
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/bootstrap-datepicker.css">
@@ -27,18 +29,26 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
     <script src="../../assets/js/app.js"></script>
 
+
+    <link rel="stylesheet" href="../../assets/css/bootstrap-iso.css" />
+    <link href="{{ asset('css/bootstrap-iso.css') }}" rel="stylesheet" type="text/css" >
+
 </head>
+@extends('layouts.club')
 <body>
-<div class="container" ng-app="sortApp" ng-controller="mainController">
+
+<div class="bootstrap-iso">
+    <div class="container" ng-app="sortApp" ng-controller="mainController" style="margin-top:10%">
+
 
     <h1>Book Room</h1>
     <div class="alert alert-info">
         <div class="container">
-            <div class="row" style="color:black;">
-                <div class="col-md-3">
+            <div class="" style="color:black;">
+                <div class="col-md-5">
                     <label for="building">SELECT BUILDING :</label>
 
-                    <select id="building" ng-model="venueId">
+                    <select id="building" ng-model="venueId" style="height:initial!important;">
                         <option value="1">NLH</option>
                         <option value="2">AB5</option>
                     </select>
@@ -46,7 +56,7 @@
 
                 <div class="col-md-3">
                     <label for="date">SELECT DATE :</label>
-                    <input id="date" ng-model="date">
+                    <input id="date" ng-model="date" style="border-radius: 5px!important">
                     <span class="add-on"><i class="icon-th"></i></span>
 
                 </div>
@@ -61,7 +71,9 @@
                 {{--</div>--}}
 
                 <div class="col-md-2">
-                    <button type="button" ng-click="fetchSlots(date, venueId)" class="btn btn-primary btn-sm">Apply</button>
+                    <button type="button" ng-click="fetchSlots(date, venueId)" class="btn btn-primary btn-sm" style="height: 50px; width: 50px; margin:10%;">
+                        Apply
+                    </button>
                 </div>
             </div>
         </div>
@@ -105,7 +117,7 @@
         </div>
     </div>
 </div>
-
+</div>
 <script>
     $('#date').datepicker({"orientation": "bottom", "autoclose": true});
 </script>

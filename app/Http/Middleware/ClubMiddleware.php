@@ -14,9 +14,12 @@ class ClubMiddleware
      * @return mixed
      */
     public function handle($request, Closure $next) {
-        if ($request->user()->user_type != 'club') {
-            return redirect('/logout');
+        if($request->user()!=null) {
+            if ($request->user()->user_type != 'club') {
+                return redirect('/logout');
+            }
+            return $next($request);
         }
-        return $next($request);
+        return redirect('/logout');
     }
 }

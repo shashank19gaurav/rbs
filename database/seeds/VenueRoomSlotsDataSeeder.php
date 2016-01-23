@@ -29,14 +29,14 @@ class VenueRoomSlotsDataSeeder extends Seeder {
 
         //Date Format YYYY-MM-DD
         //Add slot start today date here
-        $startDate = Carbon::createFromDate(2015, 11, 5, 'Asia/Kolkata');
+        $startDate = Carbon::createFromDate(2016, 01, 23, 'Asia/Kolkata');
 
         //Add slot end date here
-        $endDate = Carbon::createFromDate(2015, 11, 11, 'Asia/Kolkata');
+        $endDate = Carbon::createFromDate(2016, 01, 25, 'Asia/Kolkata');
 
 
         //Fill the slots for NLH first
-        $venueRooms = VenueRoom::where('venue_id',1)->get();
+        $venueRooms = VenueRoom::whereIn('venue_id', [1, 2])->get();
 
 //        dd($venueRooms->toArray());
         //This should be in minutes

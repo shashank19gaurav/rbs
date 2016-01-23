@@ -17,7 +17,9 @@
                 <br>
                 <tr><strong>Club Name </strong>: {{ json_decode($booking[0]['details'])->clubName}}</tr>
                 <br>
-                <tr><strong>Applicant Name / Registration Number </strong>: {{ json_decode($booking[0]['details'])->applicantsDetails}}</tr>
+                <tr><strong>Applicant Name </strong>: {{ json_decode($booking[0]['details'])->applicantName}}</tr>
+                <br>
+                <tr><strong>Registration Number </strong>: {{ json_decode($booking[0]['details'])->applicantRegistrationNumber}}</tr>
                 <br>
                 <tr><strong>Contact </strong>: {{ json_decode($booking[0]['details'])->contact}}</tr>
                 <br>

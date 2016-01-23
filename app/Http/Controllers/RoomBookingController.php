@@ -37,15 +37,18 @@ class RoomBookingController extends Controller
 
 
         $currentFloor = $slots->first()->associatedRoom->room[0];
-
-        $i = 0;
-        foreach($slots as $slot){
-            if($slot->associatedRoom->room[0]!=$currentFloor){
-                $currentFloor = $slot->associatedRoom->room[0];
-                $i = $i+1;
+        $data = array();
+        if(!is_null($currentFloor)) {
+            $i = 0;
+            foreach ($slots as $slot) {
+                if ($slot->associatedRoom->room[0] != $currentFloor) {
+                    $currentFloor = $slot->associatedRoom->room[0];
+                    $i = $i + 1;
+                }
+                $data['floor'][$i][] = $slot;
             }
-            $data['floor'][$i][] = $slot;
         }
+
         $response['data'] = $data;
         return json_encode($response);
     }
