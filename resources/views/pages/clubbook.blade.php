@@ -111,7 +111,7 @@
                             <a href="/clubbook/book/@{{slot.id}}" class="btn btn-default room" role="button" style="font-size: 20px;"> @{{  slot.associated_room.room }}</a><br/>
                         </span>
                         <span ng-if="slot.status==='NA'">
-                            <a href="/clubbook/book/@{{slot.id}}" class="btn btn-default room disabled" role="button" style="font-size: 20px;"> @{{  slot.associated_room.room }}</a><br/>
+                            <a href="/clubbook/book/@{{slot.id}}" class="btn btn-default room disabled" role="button" style="font-size: 20px;"> @{{  slot.associated_room.room}} (@{{  getClubName(slot.booking_detail.details)}}) </a><br/>
                         </span>
                     </span>
                     </div>

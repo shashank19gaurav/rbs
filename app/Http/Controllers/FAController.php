@@ -77,7 +77,7 @@ class FAController extends Controller {
     }
 
     public function checkRoomStatus(){
-        return view('pages.swfstatus');
+        return view('pages.fastatus');
     }
 
 }

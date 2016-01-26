@@ -38,7 +38,7 @@
 <div>
     <div class="container" ng-app="sortApp" ng-controller="mainController" style="margin-top:10%">
         <div class="bootstrap-iso center-block default-background" align="center" style="margin-bottom: auto;">
-            <h1>Book Room</h1>
+            <h1>Check Status of All the Rooms</h1>
         </div>
 
         <div class="alert alert-info">
@@ -108,10 +108,10 @@
 
                     <span ng-repeat="slot in floor">
                         <span ng-if="slot.status==='AV'">
-                            <a href="/changeroom/@{{slot.id}}" class="btn btn-default room" role="button" style="font-size: 20px;" onclick="javascript:return confirm('Are you sure to change the room for this booking ?')"> @{{  slot.associated_room.room }}</a><br/>
+                            <span href="/clubbook/book/@{{slot.id}}" class="btn btn-default room" role="button" style="font-size: 20px;"> @{{  slot.associated_room.room }}</span><br/>
                         </span>
                         <span ng-if="slot.status==='NA'">
-                            <a href="/changeroom/@{{slot.id}}" class="btn btn-default room disabled" role="button" style="font-size: 20px;"> @{{  slot.associated_room.room}} (@{{  getClubName(slot.booking_detail.details)}}) </a><br/>
+                            <span class="btn btn-default room disabled" role="button" style="font-size: 20px;"> @{{  slot.associated_room.room}} (@{{  getClubName(slot.booking_detail.details)}}) </span><br/>
                         </span>
                     </span>
                 </div>

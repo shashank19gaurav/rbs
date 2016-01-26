@@ -11,10 +11,11 @@
 |
 */
 
-
 Route::get('/', function () {
     return view('pages.index');
 });
+
+
 
 Route::get('/index', function () {
     return view('pages.index');
@@ -36,7 +37,7 @@ Route::group(array('before' => 'auth'), function(){
     Route::get('/changepassword', function(){
         return view('pages.changepassword');
     });
-
+    Route::post('/changepasswordrequest', 'RoomBookingController@changePassword');
     Route::group(['middleware' => 'App\Http\Middleware\ClubMiddleware'], function()
     {
         Route::get('/clubhome', 'ClubController@index');
@@ -48,6 +49,9 @@ Route::group(array('before' => 'auth'), function(){
         });
         Route::post('/clubbook/book/{slotID}', ['as' => 'book_slot', 'uses' => 'RoomBookingController@bookSlot']);
         Route::get('/clubcancel/{slotID}', ['as' => 'book_slot', 'uses' => 'RoomBookingController@cancelSlot']);
+
+//        Route::post('/changepasswordrequest', 'Auth\AuthController@changePassword');
+
     });
 
     Route::group(['middleware' => 'App\Http\Middleware\SecurityMiddleware'], function() {

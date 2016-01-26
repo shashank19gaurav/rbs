@@ -17,7 +17,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-@extends('layouts.fa')
+@extends('layouts.security')
 <body>
 
     <div class="container" style="margin: auto;margin-top: 10%;">
@@ -42,7 +42,7 @@
                             <label class="col-md-4 control-label" for=""></label>
                             <div class="col-md-4" align="right">
                                 <button id="submit" name="submit" class="btn btn-primary">Submit</button>
-                                <a href="/fanewbookings"><button type="button" class="btn btn-danger">Cancel</button></a>
+                                <a href="/swfnewbookings"><button type="button" class="btn btn-danger">Cancel</button></a>
                             </div>
                         </div>
 

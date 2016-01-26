@@ -64,7 +64,7 @@
                         @endif
                             </td>
 
-                        <td><a href="/securityhistory/{{$booking['id']}}">Details</a></td>
+                        <td><a href="/fahistory/{{$booking['id']}}">Details</a></td>
                     </tr>
                 @endforeach
             </tbody>

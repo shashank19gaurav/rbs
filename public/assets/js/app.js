@@ -27,4 +27,9 @@ angular.module('sortApp', [])
                 });
 
         };
+
+        $scope.getClubName = function(string){
+            return JSON.parse(string)['clubName'].substring(0,5);
+        };
+
     });

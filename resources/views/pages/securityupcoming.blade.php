@@ -14,6 +14,7 @@
                     <th>Your Remark</th>
                     <th></th>
                     <th></th>
+                    <th></th>
                 </tr>
 
 
@@ -31,17 +32,23 @@
                         <td>{{$booking['associated_venue_room']['room']}}</td>
                         <td>{{$booking['associated_venue_room_slot']['date']}}</td>
                         @if ($booking['approved_by_fa'] === 1)
-                            <td> {{'Approved'}}</td>
+                            <td> {{'Approved'}}
                         @else
-                            <td> {{'In Progress'}}</td>
-                        @endif
-
+                            <td> {{'In Progress'}}
+                                @endif
+                                @if ($booking['fa_remarks'] != null)
+                                    <strong><br/> Remarks : {{$booking['fa_remarks']}}</strong>
+                                @endif
+                            </td>
                         @if ($booking['approved_by_swf'] === 1)
-                            <td> {{'Approved'}}</td>
+                            <td> {{'Approved'}}
                         @else
-                            <td> {{'In Progress'}}</td>
-                        @endif
-
+                            <td> {{'In Progress'}}
+                                @endif
+                                @if ($booking['swf_remarks'] != null)
+                                    <strong><br/> Remarks : {{$booking['swf_remarks']}}</strong>
+                                @endif
+                            </td>
                         @if ($booking['security_remarks'] == null)
                             <td> {{  '-' }}</td>
                         @else
@@ -52,6 +59,7 @@
                         <td><a href="/securityapprove/{{$booking['id']}}" onclick="javascript:return confirm('Are you sure to approve this booking ?')">Approve</a></td>
                         <td><a href="/securitydisapprove/{{$booking['id']}}" onclick="javascript:return confirm('Are you sure to disapprove this booking ?')">Disapprove</a></td>
                         <td><a href="/securitychange/{{$booking['id']}}">Change Room</a></td>
+                        <td><a href="/securityremark/{{$booking['id']}}">Add/Update your remark</a></td>
 
                     </tr>
                 @endforeach

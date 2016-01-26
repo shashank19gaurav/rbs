@@ -20,4 +20,8 @@ class VenueRoomSlot extends Model
     public function associatedVenue() {
         return $this->belongsToThrough('App\Venue', 'App\VenueRoom');
     }
+
+    public function bookingDetail(){
+        return $this->hasOne('App\Booking', 'venue_room_slot_id');
+    }
 }

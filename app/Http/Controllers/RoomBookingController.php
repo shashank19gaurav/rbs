@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\VenueRoomSlot;
 use App\Booking;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Input;
 use Auth;
 use DB;
@@ -25,11 +27,13 @@ class RoomBookingController extends Controller
         $slots = VenueRoomSlot::where('date', $slotDate->toDateString())
             ->with('associatedRoom')
             ->with('associatedVenue')
+            ->with('bookingDetail')
             ->whereHas('associatedRoom', function($q) use ($venueId){
                 $q->where('venue_id', '=', $venueId);
             })
             ->get();
 
+//        dd($slots);
         //Floor wise data sort karna hai
         //Frontend pe dikhane ke liye
         $data = array();
@@ -193,4 +197,30 @@ class RoomBookingController extends Controller
             ->get();
         return json_encode($allBookings);
     }
+
+    public function changePassword() {
+        if(!is_null(Auth::user())) {
+            $oldPassword = Input::get('oldPassword');
+            $newPassword = Input::get('newPassword');
+            $confirmPassword = Input::get('confirmPassword');
+
+            $passwordChanged = 0;
+
+            if(Hash::check($oldPassword, Auth::user()->password)){
+                if($newPassword == $confirmPassword) {
+                    $user = User::where('id', Auth::user()->id)->first();
+                    $user->password = Hash::make($newPassword);
+                    $user->save();
+                    $passwordChanged = 1;
+                    Auth::logout();
+                }
+            }
+           // Auth::logout();
+            return view('pages.changepasswordconfirm')->with('passwordChanged', $passwordChanged);
+        } else {
+            Auth::logout();
+            return Redirect::to('/');
+        }
+    }
+
 }

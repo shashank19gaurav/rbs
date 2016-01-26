@@ -17,16 +17,17 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+@extends('layouts.swf')
 <body>
 
-    <div class="container" style="margin: auto;margin-top: 04%;">
+    <div class="container" style="margin: auto;margin-top: 10%;">
         <div class="row">
             <div class="col-md-10">
                 <form class="form-horizontal" method="post">
                     <fieldset>
 
                         <!-- Form Name -->
-                        <legend align="center">Add Remark </legend>
+                        <legend align="center" style="font-size:25px; margin:2%;">Add Remark </legend>
 
                         <!-- Text input-->
                         <div class="form-group">
@@ -40,7 +41,8 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for=""></label>
                             <div class="col-md-4" align="right">
-                                <button id="" name="" class="btn btn-primary">Submit</button>
+                                <button id="submit" name="submit" class="btn btn-primary">Submit</button>
+                                <a href="/swfnewbookings"><button type="button" class="btn btn-danger">Cancel</button></a>
                             </div>
                         </div>
 

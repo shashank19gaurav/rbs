@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class SecurityController extends Controller {
     public function index(){
@@ -74,7 +75,7 @@ class SecurityController extends Controller {
     }
 
     public function checkRoomStatus(){
-        return view('pages.swfstatus');
+        return view('pages.securitystatus');
     }
 
     public function changeRoomShow(Request $request, $id) {
@@ -111,7 +112,6 @@ class SecurityController extends Controller {
                     $booking->save();
                     return redirect('securitynewbookings');
 
-                    dd("Success");
                 }
 
             }
@@ -119,4 +119,16 @@ class SecurityController extends Controller {
             dd("NHP");
         }
     }
+
+    public function addRemark(){
+        return view('pages.securityremark');
+    }
+
+    public function addRemarkProcessRequest($id){
+        $booking = Booking::where('id',$id)->first();
+        $booking->security_remarks = Input::get('remark');
+        $booking->save();
+        return redirect('/securitynewbookings')->with('message', "Thank You ! Booking Approved");
+    }
+
 }
