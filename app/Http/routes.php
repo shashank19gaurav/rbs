@@ -89,6 +89,8 @@ Route::group(array('before' => 'auth'), function(){
     
 });
 
+Route::get('/home', 'Auth\AuthController@processLogout');
+
 //TODO:: Change logout request to POST
 Route::get('/logout', 'Auth\AuthController@processLogout');
 //Route::get('/logout', array('as' => 'logout', 'uses' => 'Auth\AuthController@logout'));

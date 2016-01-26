@@ -17,11 +17,10 @@ class FAController extends Controller {
 
     public function checkUpcomingBookings(){
         $bookingsData =  $this->getBookingFA()->toArray();
+//        dd($bookingsData);
         return view('pages.faupcoming')->with('bookingsData', $bookingsData);
     }
     private function getBookingFA(){
-//        $twentyFourHourBeforeNow = Carbon::now('Asia/Kolkata')->subHour(24);
-//        $allBookings = Booking::where('created_at', '<=' , $twentyFourHourBeforeNow)
         $allBookings = Booking::where('approved_by_fa', 0)
             ->where('disapproved_by', null)
             ->with('associatedVenueRoomSlot')

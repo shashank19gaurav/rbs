@@ -22,7 +22,7 @@
 
             </thead>
             <tbody>
-
+{{--                {{ print_r($bookingsData) }}--}}
                 @foreach ($bookingsData as $booking)
                     <tr class="success" style="background:#CCFFB2;">
                         @if ($booking['associated_venue_room']['venue_id'] === 1)
