@@ -13,11 +13,12 @@ class FAMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {
-        if ($request->user()->user_type != 'fa') {
-            return redirect('/logout');
+    public function handle($request, Closure $next) {
+        if($request->user()!=null) {
+            if ($request->user()->user_type != 'fa') {
+                return redirect('/logout');
+            }
+            return $next($request);
         }
-        return $next($request);
     }
 }
