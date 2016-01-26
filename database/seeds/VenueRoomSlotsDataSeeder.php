@@ -17,7 +17,7 @@ class VenueRoomSlotsDataSeeder extends Seeder {
      */
     public function run()
     {
-         \DB::table('venue_room_slots')->delete();
+//         \DB::table('venue_room_slots')->delete();
 
 
         //Things to do here -
@@ -29,10 +29,10 @@ class VenueRoomSlotsDataSeeder extends Seeder {
 
         //Date Format YYYY-MM-DD
         //Add slot start today date here
-        $startDate = Carbon::createFromDate(2016, 01, 23, 'Asia/Kolkata');
+        $startDate = Carbon::createFromDate(2016, 01, 26, 'Asia/Kolkata');
 
         //Add slot end date here
-        $endDate = Carbon::createFromDate(2016, 01, 25, 'Asia/Kolkata');
+        $endDate = Carbon::createFromDate(2016, 01, 30, 'Asia/Kolkata');
 
 
         //Fill the slots for NLH first

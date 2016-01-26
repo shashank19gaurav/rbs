@@ -19,10 +19,9 @@ class RoomBookingController extends Controller
     public function getSlot(){
 
         //Slot time
-//        $slotTime = Input::get('time');
         $slotDate = Carbon::parse(Input::get('date'));
+        $todayDate = Carbon::now('Asia/Kolkata');
         $venueId = Input::get('venueId');
-//        dd($slotDate->toDateString());
         $slots = VenueRoomSlot::where('date', $slotDate->toDateString())
             ->with('associatedRoom')
             ->with('associatedVenue')
@@ -31,14 +30,13 @@ class RoomBookingController extends Controller
             })
             ->get();
 
-//        dd($slots);
         //Floor wise data sort karna hai
         //Frontend pe dikhane ke liye
-
-
-        $currentFloor = $slots->first()->associatedRoom->room[0];
         $data = array();
-        if(!is_null($currentFloor)) {
+
+        if(!is_null($slots->first()) && $slotDate > $todayDate->subDay(1)) {
+            $currentFloor = $slots->first()->associatedRoom->room[0];
+
             $i = 0;
             foreach ($slots as $slot) {
                 if ($slot->associatedRoom->room[0] != $currentFloor) {

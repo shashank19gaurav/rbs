@@ -33,6 +33,10 @@ Route::get('/dumpclubbookings', 'RoomBookingController@getBookingClub');
 Route::get('/securitybookings', 'RoomBookingController@getBookingSecurity');
 
 Route::group(array('before' => 'auth'), function(){
+    Route::get('/changepassword', function(){
+        return view('pages.changepassword');
+    });
+
     Route::group(['middleware' => 'App\Http\Middleware\ClubMiddleware'], function()
     {
         Route::get('/clubhome', 'ClubController@index');

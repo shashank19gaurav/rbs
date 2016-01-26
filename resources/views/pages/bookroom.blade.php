@@ -8,6 +8,7 @@
     <title>Book Room | Please Fill the Form </title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    {{--<link rel="stylesheet" href="../../assets/css/bootstrap-iso.css" />--}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -16,9 +17,11 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet" href="../../assets/css/bootstrap-iso.css" />
 </head>
+@extends('layouts.club')
 <body>
-    <div class="container" style="margin-top:2%;margin-bottom: 2%;background:rgba(109, 128, 118, 0.2);">
+    <div class="container" style="margin-top:2%;margin-bottom: 2%;background:#f5f5f5;">
         <ul>
             @foreach($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -32,7 +35,10 @@
                 <fieldset>
 
                     <!-- Form Name -->
-                    <legend align="center">Details for booking room</legend>
+                    <div class="bootstrap-iso default-background">
+                        <legend align="center"><h3>Please fill in the details for booking the room</h3></legend>
+                    </div>
+
 
                     <!-- Text input-->
                     <div class="form-group">
@@ -182,7 +188,9 @@
                         <label class="col-md-4 control-label" for="submit"></label>
                         <div class="col-md-4">
                             <button id="submit" name="submit" class="btn btn-primary">Book</button>
+                            <a href="/clubbook"><button type="button" class="btn btn-danger">Cancel</button></a>
                         </div>
+
                     </div>
                 </fieldset>
             </div>

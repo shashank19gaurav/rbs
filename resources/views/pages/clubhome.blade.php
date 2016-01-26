@@ -4,11 +4,12 @@
         <div id="container" style="height: 100%;">
         	<p> Notice Board</p>
 			
-			<center>
-			<div id="container" style="width: 60%;background-color: rgba(171, 171, 171, 0.55);">
-			Notice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice Board
+
+			<div id="container" style="width: 60%; height:200px; background-color: rgba(171, 171, 171, 0.55); margin: auto; overflow-y: scroll;">
+				Notice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice Board
+				Notice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice Board
+				Notice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice BoardNotice Board
 			</div>
-			</center>
 			
 	   </div>
     </section>
